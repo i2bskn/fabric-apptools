@@ -16,6 +16,8 @@ setup(name='fabric_apptools',
       packages=['fabric_apptools'],
       install_requires=[
           'fabric3',
+          'PyYAML',
+          'Jinja2',
       ],
       license='MIT',
       classifiers=['Development Status :: 1 - Planning',
