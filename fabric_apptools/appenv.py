@@ -3,12 +3,10 @@ import yaml
 from fabric.api import env
 
 def _appenv_file():
-    base = os.getenv('APPENV_FILE', os.path.join(os.getcwd(), 'deploy'))
-    return os.path.join(base, 'appenv.yml')
+    return os.getenv('APPENV_FILE', os.path.join(os.getcwd(), 'deploy', 'appenv.yml'))
 
-def set_environment(stage='development'):
-    f = open(_appenv_file())
-    all_envs = yaml.load(f)
-    f.close()
-    env.appenv = all_envs[stage]
-    env.appenv.update({'stage': stage})
+def set_environment(name='development'):
+    with open(_appenv_file()) as f:
+        all_envs = yaml.load(f)
+        env.stage = name
+        env.appenv = all_envs[name]
